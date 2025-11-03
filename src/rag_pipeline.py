@@ -109,7 +109,12 @@ Question: {question}""")
                 "answer": f"Error generating response: {str(e)}",
                 "success": False
             }
-    
+
+    def run_query(self, user_query: str) -> str:
+        """Return just the answer text for one question (used by the /ask API)."""
+        result = self.query(user_query)
+        return result.get("answer", "")
+
     def chat(self, questions: List[str]) -> List[dict]:
         """
         Process multiple questions in sequence
